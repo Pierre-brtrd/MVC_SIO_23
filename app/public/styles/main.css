@@ -1,0 +1,28 @@
+@import './structure.css';
+
+/**************** Banner  ******************/
+.banner {
+    background-image: url('../assets/images/banner-projet-site-web.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-title {
+    padding: .5em 1em;
+    background: rgba(var(--bs-primary-rgb), 0.6);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--bs-border-radius);
+}
+
+.banner-title h1 {
+    color: var(--bs-white);
+    font-size: 3rem;
+}
