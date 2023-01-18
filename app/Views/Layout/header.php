@@ -10,6 +10,13 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                     <a class="nav-link" href="/postes">Postes</a>
                 </div>
+                <div class="navbar-nav ms-auto">
+                    <?php if (isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) : ?>
+                        <a href="/user/logout" class="btn btn-danger">Déconnexion</a>
+                    <?php else : ?>
+                        <a href="/user/login" class="btn btn-light">Connexion</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </nav>

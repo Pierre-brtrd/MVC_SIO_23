@@ -17,12 +17,22 @@ class UserModel extends Model
     /**
      * @var string
      */
+    protected string $prenom;
+
+    /**
+     * @var string
+     */
     protected string $email;
 
     /**
      * @var string
      */
     protected string $password;
+
+    /**
+     * @var array
+     */
+    protected array $roles;
 
     public function __construct()
     {
@@ -38,6 +48,22 @@ class UserModel extends Model
     public function findOneByEmail(string $email): mixed
     {
         return $this->runQuery("SELECT * FROM $this->table WHERE email = ?", [$email])->fetch();
+    }
+
+    /**
+     * Créer la session de l'utilisateur
+     *
+     * @return void
+     */
+    public function setSession(): void
+    {
+        $_SESSION['user'] = [
+            'id' => $this->id,
+            'prenom' => $this->prenom,
+            'nom' => $this->nom,
+            'email' => $this->email,
+            'roles' => json_encode($this->roles),
+        ];
     }
 
     /**
@@ -89,6 +115,30 @@ class UserModel extends Model
     }
 
     /**
+     * Get the value of prenom
+     *
+     * @return string
+     */
+    public function getPrenom(): string
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set the value of prenom
+     *
+     * @param string $prenom
+     *
+     * @return self
+     */
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
      * Get the value of email
      *
      * @return string
@@ -132,6 +182,37 @@ class UserModel extends Model
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of roles
+     *
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    /**
+     * Set the value of roles
+     *
+     * @param array|null $roles
+     * @return self
+     */
+    public function setRoles(?array $roles): self
+    {
+        if ($roles !== null) {
+            $this->roles = $roles;
+        } else {
+            $this->roles[] = 'ROLE_USER';
+        }
 
         return $this;
     }

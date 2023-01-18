@@ -8,6 +8,9 @@ class Main
 {
     public function start()
     {
+        // On démarre la session
+        session_start();
+
         // On retire le trailing /
         // On récupère l'url envoyée
         $uri = $_SERVER['REQUEST_URI'];
