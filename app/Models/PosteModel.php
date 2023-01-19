@@ -35,6 +35,11 @@ class PosteModel extends Model
     protected DateTime $createdAt;
 
     /**
+     * @var integer
+     */
+    protected int $user_id;
+
+    /**
      * Constructeur de la classe Poste
      */
     public function __construct()
@@ -158,6 +163,30 @@ class PosteModel extends Model
     public function setCreatedAt(DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user_id
+     *
+     * @return int
+     */
+    public function getUserId(): int
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set the value of user_id
+     *
+     * @param int $user_id
+     *
+     * @return self
+     */
+    public function setUserId(int $user_id): self
+    {
+        $this->user_id = $user_id;
 
         return $this;
     }

@@ -206,10 +206,10 @@ class UserModel extends Model
      * @param array|null $roles
      * @return self
      */
-    public function setRoles(?array $roles): self
+    public function setRoles(string|array|null $roles): self
     {
         if ($roles !== null) {
-            $this->roles = $roles;
+            $this->roles = is_array($roles) ? $roles : json_decode($roles);
         } else {
             $this->roles[] = 'ROLE_USER';
         }
